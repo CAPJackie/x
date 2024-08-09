@@ -1,7 +1,8 @@
+import { TopBarMenuItems } from "@/types";
 import { createContext } from "react";
 
 const defaultValues = {
-    currentPage: 0,
+    currentPage: TopBarMenuItems.ForYou,
     setCurrentPage: (currentPage: number) => {}
 }
 
