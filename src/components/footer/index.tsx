@@ -20,7 +20,7 @@ export function Footer() {
     //TODO: Communities page
     //TODO: Tablet
     //TODO: Desktop
-    <footer className="absolute bottom-0 h-[53px] w-full border-t-[1px] border-[#2f3336]">
+    <footer className="absolute bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray">
       <nav className="h-full">
         <ul className="flex flex-row items-center h-full justify-between">
           <li className="w-full flex">

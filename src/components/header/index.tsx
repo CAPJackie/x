@@ -30,20 +30,19 @@ export function Header() {
           />
         </button>
       </div>
-      <nav className="h-[50%] flex">
+      <nav className="h-[50%] flex border-b-[1px] border-twitter-dark-gray">
         <a
           onClick={() => setCurrentPage(TopBarMenuItems.ForYou)}
           className={cn(
-            "px-4 w-full flex justify-center items-center flex-col font-medium",
+            "px-4 w-full flex justify-center items-center flex-col font-medium active:bg-[#e7e9ea]/10",
             {
-              "bg-[#e7e9ea]/10 font-bold":
-                currentPage === TopBarMenuItems.ForYou,
+              "font-bold": currentPage === TopBarMenuItems.ForYou,
             }
           )}
         >
           <span
             className={cn("relative", {
-              "text-[#71767b]": currentPage !== TopBarMenuItems.ForYou,
+              "text-twitter-gray": currentPage !== TopBarMenuItems.ForYou,
             })}
           >
             For you
@@ -59,16 +58,15 @@ export function Header() {
         <a
           onClick={() => setCurrentPage(TopBarMenuItems.Following)}
           className={cn(
-            "px-4 w-full flex justify-center items-center font-medium",
+            "px-4 w-full flex justify-center items-center font-medium active:bg-[#e7e9ea]/10",
             {
-              "bg-[#e7e9ea]/10 font-bold":
-                currentPage === TopBarMenuItems.Following,
+              "font-bold": currentPage === TopBarMenuItems.Following,
             }
           )}
         >
           <span
             className={cn("relative", {
-              "text-[#71767b]": currentPage !== TopBarMenuItems.Following,
+              "text-twitter-gray": currentPage !== TopBarMenuItems.Following,
             })}
           >
             Following
