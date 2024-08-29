@@ -3,16 +3,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useInsertionEffect, useLayoutEffect } from "react";
 
 export function Footer() {
   const pathname = usePathname();
   const getSrc = (name: string) => {
     return `/images/${name}${pathname.includes(name) ? "_selected" : ""}.svg`;
   };
+
+  const handleScroll = () => {
+    const footer: HTMLElement | null = document.querySelector("footer");
+    if (!footer) return;
+    console.log(window.scrollY, "scrollY");
+    if (window.scrollY < 50) {
+      footer.style.opacity = "1";
+      return;
+    }
+    const footerHeight = footer.offsetHeight;
+    if (Number(footer.style.opacity) > 0.3) {
+      footer.style.opacity = String(
+        (footerHeight - (window.scrollY - 50)) / footerHeight
+      );
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   return (
     //TODO: Create Component for each item
     //TODO: Create each page
-    //TODO: Build For you layout / Following layout
+    //TODO: Buil For you layout / Following layout
     //TODO: Search page
     //TODO: Grok page
     //TODO: Notifications page
@@ -20,10 +49,10 @@ export function Footer() {
     //TODO: Communities page
     //TODO: Tablet
     //TODO: Desktop
-    <footer className="absolute bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray">
+    <footer className="fixed bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray bg-black">
       <nav className="h-full">
         <ul className="flex flex-row items-center h-full justify-between">
-          <li className="w-full flex">
+          <li key="1" className="w-full flex">
             <Link href={"/home"} className="w-full flex justify-center">
               <Image
                 src={getSrc("home")}
@@ -34,7 +63,7 @@ export function Footer() {
               />
             </Link>
           </li>
-          <li className="w-full flex">
+          <li key="2" className="w-full flex">
             <Link href={"/search"} className="w-full flex justify-center">
               <Image
                 src={getSrc("search")}
@@ -45,7 +74,7 @@ export function Footer() {
               />
             </Link>
           </li>
-          <li className="w-full flex">
+          <li key="3" className="w-full flex">
             <Link href={"/grok"} className="w-full flex justify-center">
               <Image
                 src={getSrc("grok")}
@@ -56,7 +85,7 @@ export function Footer() {
               />
             </Link>
           </li>
-          <li className="w-full flex">
+          <li key="4" className="w-full flex">
             <Link
               href={"/notifications"}
               className="w-full flex justify-center"
@@ -70,7 +99,7 @@ export function Footer() {
               />
             </Link>
           </li>
-          <li className="w-full flex">
+          <li key="5" className="w-full flex">
             <Link href={"/messages"} className="w-full flex justify-center">
               <Image
                 src={getSrc("messages")}
@@ -81,7 +110,7 @@ export function Footer() {
               />
             </Link>
           </li>
-          <li className="w-full flex">
+          <li key="6" className="w-full flex">
             <Link
               href={"/communities/explore"}
               className="w-full flex justify-center"

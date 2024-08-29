@@ -60,7 +60,7 @@ export default async function Home() {
   const posts = Array.from({ length: 10 }).map((_, index) => post);
   return posts.map((post, index) => (
     <div
-      key={post.id}
+      key={post.id + index}
       className="flex flex-row py-[12px] px-[16px] border-b border-twitter-dark-gray text-[15px]"
     >
       <div className="flex items-start mr-2">

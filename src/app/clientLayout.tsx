@@ -14,7 +14,7 @@ export default function ClientLayout({
   return (
     <TopBarMenuContext.Provider value={{ currentPage, setCurrentPage }}>
       <Header />
-      {children}
+      <div className="mb-[53px]">{children}</div>
       <Footer />
     </TopBarMenuContext.Provider>
   );
