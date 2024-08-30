@@ -4,10 +4,27 @@ import { TopBarMenuContext } from "@/context";
 import { TopBarMenuItems } from "@/types";
 import cn from "classnames";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
 export function Header() {
   const { currentPage, setCurrentPage } = useContext(TopBarMenuContext);
+  const topBarMenuOptions: { [key: string]: { name: TopBarMenuItems }[] } = {
+    home: [
+      { name: TopBarMenuItems.ForYou },
+      { name: TopBarMenuItems.Following },
+    ],
+    explore: [
+      { name: TopBarMenuItems.ForYou },
+      { name: TopBarMenuItems.Trending },
+      { name: TopBarMenuItems.News },
+      { name: TopBarMenuItems.Sports },
+      { name: TopBarMenuItems.Entertainment },
+    ],
+  };
+  const pathname = usePathname();
+  const currentPageFromPathname = pathname.split("/")[1];
+  console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
   return (
     <header className="h-[107px] w-full flex flex-col">
       <div className="h-[50%] px-4 flex items-center justify-start relative">
@@ -30,55 +47,36 @@ export function Header() {
           />
         </button>
       </div>
-      <nav className="h-[50%] flex border-b-[1px] border-twitter-dark-gray">
-        <a
-          onClick={() => setCurrentPage(TopBarMenuItems.ForYou)}
-          className={cn(
-            "px-4 w-full flex justify-center items-center flex-col font-medium active:bg-[#e7e9ea]/10",
-            {
-              "font-bold": currentPage === TopBarMenuItems.ForYou,
-            }
-          )}
-        >
-          <span
-            className={cn("relative", {
-              "text-twitter-gray": currentPage !== TopBarMenuItems.ForYou,
-            })}
-          >
-            For you
-            {currentPage === TopBarMenuItems.ForYou && (
-              <div
-                className={cn(
-                  "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
+      <nav className="h-[50%] flex border-twitter overflow-hidden overflow-x-scroll w-full max-w-full">
+        {topBarMenuOptions[currentPageFromPathname].map((option) => {
+          return (
+            <a
+              key={option.name}
+              onClick={() => setCurrentPage(option.name)}
+              className={cn(
+                "px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
+                {
+                  "font-bold": currentPage === option.name,
+                }
+              )}
+            >
+              <span
+                className={cn("relative", {
+                  "text-twitter-gray": currentPage !== option.name,
+                })}
+              >
+                {option.name}
+                {currentPage === option.name && (
+                  <div
+                    className={cn(
+                      "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
+                    )}
+                  />
                 )}
-              />
-            )}
-          </span>
-        </a>
-        <a
-          onClick={() => setCurrentPage(TopBarMenuItems.Following)}
-          className={cn(
-            "px-4 w-full flex justify-center items-center font-medium active:bg-[#e7e9ea]/10",
-            {
-              "font-bold": currentPage === TopBarMenuItems.Following,
-            }
-          )}
-        >
-          <span
-            className={cn("relative", {
-              "text-twitter-gray": currentPage !== TopBarMenuItems.Following,
-            })}
-          >
-            Following
-            {currentPage === TopBarMenuItems.Following && (
-              <div
-                className={cn(
-                  "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
-                )}
-              />
-            )}
-          </span>
-        </a>
+              </span>
+            </a>
+          );
+        })}
       </nav>
     </header>
   );

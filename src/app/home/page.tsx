@@ -61,7 +61,7 @@ export default async function Home() {
   return posts.map((post, index) => (
     <div
       key={post.id + index}
-      className="flex flex-row py-[12px] px-[16px] border-b border-twitter-dark-gray text-[15px]"
+      className="flex flex-row py-[12px] px-[16px] border-twitter text-[15px]"
     >
       <div className="flex items-start mr-2">
         <Link href={`/${post.user.username}`}>

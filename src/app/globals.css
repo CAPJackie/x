@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .border-twitter {
+    @apply border-b border-twitter-dark-gray;
+  }
+}

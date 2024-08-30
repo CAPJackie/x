@@ -1,4 +1,8 @@
 export enum TopBarMenuItems { 
-    ForYou,
-    Following
+    ForYou = "For you",
+    Following = "Following",
+    Trending = "Trending",
+    News = "News",
+    Sports = "Sports",
+    Entertainment = "Entertainment",
 }

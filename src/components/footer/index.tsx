@@ -14,7 +14,7 @@ export function Footer() {
   const handleScroll = () => {
     const footer: HTMLElement | null = document.querySelector("footer");
     if (!footer) return;
-    console.log(window.scrollY, "scrollY");
+    // console.log(window.scrollY, "scrollY");
     if (window.scrollY < 50) {
       footer.style.opacity = "1";
       return;
@@ -64,11 +64,11 @@ export function Footer() {
             </Link>
           </li>
           <li key="2" className="w-full flex">
-            <Link href={"/search"} className="w-full flex justify-center">
+            <Link href={"/explore"} className="w-full flex justify-center">
               <Image
-                src={getSrc("search")}
+                src={getSrc("explore")}
                 className="h-[26px] w-[26px] m-[8px]"
-                alt="search"
+                alt="explore"
                 width={26}
                 height={26}
               />
