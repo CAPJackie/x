@@ -1,44 +1,12 @@
+"use client";
+
+import { TopBarMenuContext } from "@/context";
+import { trendExamples } from "@/lib/mock-data";
 import Image from "next/image";
+import { useContext } from "react";
 
-type Trending = {
-  title: string;
-  name: string;
-  tweets: number;
-};
-
-export default async function Explore() {
-  const trendExamples: Trending[] = [
-    {
-      title: "Trending in Colombia",
-      name: "Bancolombia",
-      tweets: 1190,
-    },
-    {
-      title: "Trending in Movies",
-      name: "Rubina",
-      tweets: 10400,
-    },
-    {
-      title: "Trending in Colombia",
-      name: "Daviplata",
-      tweets: 3561,
-    },
-    {
-      title: "Trending",
-      name: "Harris and Walz",
-      tweets: 184000,
-    },
-    {
-      title: "Trending in Colombia",
-      name: "Skynet",
-      tweets: 54700,
-    },
-    {
-      title: "Trending in Politics",
-      name: "Bacon",
-      tweets: 27900,
-    },
-  ];
+export default function Explore() {
+  const { currentPage } = useContext(TopBarMenuContext);
   return (
     <div className="flex flex-col">
       <div className="border-twitter px-[16px] py-[12px]">
@@ -51,7 +19,7 @@ export default async function Explore() {
         </div>
       </div>
       <ul>
-        {trendExamples.map((trend) => (
+        {trendExamples[currentPage]?.map((trend) => (
           <li
             key={trend.name}
             className="relative flex flex-row items-center w-full px-[16px] py-[12px]"

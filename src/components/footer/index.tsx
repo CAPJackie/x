@@ -42,7 +42,6 @@ export function Footer() {
     //TODO: Create Component for each item
     //TODO: Create each page
     //TODO: Buil For you layout / Following layout
-    //TODO: Search page
     //TODO: Grok page
     //TODO: Notifications page
     //TODO: Messages page

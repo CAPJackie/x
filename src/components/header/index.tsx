@@ -3,9 +3,10 @@
 import { TopBarMenuContext } from "@/context";
 import { TopBarMenuItems } from "@/types";
 import cn from "classnames";
+import { log } from "console";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export function Header() {
   const { currentPage, setCurrentPage } = useContext(TopBarMenuContext);
@@ -21,10 +22,20 @@ export function Header() {
       { name: TopBarMenuItems.Sports },
       { name: TopBarMenuItems.Entertainment },
     ],
+    notifications: [
+      { name: TopBarMenuItems.All },
+      { name: TopBarMenuItems.Verified },
+      { name: TopBarMenuItems.Mentions },
+    ],
   };
   const pathname = usePathname();
   const currentPageFromPathname = pathname.split("/")[1];
-  console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
+  useEffect(() => {
+    //setCurrentPage(currentPageFromPathname);}
+    console.log(currentPageFromPathname, 'pathname');
+    setCurrentPage(topBarMenuOptions[currentPageFromPathname][0].name);
+  }, [currentPageFromPathname]);
+  //console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
   return (
     <header className="h-[107px] w-full flex flex-col">
       <div className="h-[50%] px-4 flex items-center justify-start relative">

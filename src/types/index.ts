@@ -1,1 +1,2 @@
-export * from './top-bar-menu-items';
+export * from "./top-bar-menu-items";
+export * from "./trending";
