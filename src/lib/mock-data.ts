@@ -1,4 +1,4 @@
-import { TopBarMenuItems, TrendingSection } from "@/types";
+import { Notifications, TopBarMenuItems, TrendingSection } from "@/types";
 
 export const trendExamples: Partial<TrendingSection> = {
   [TopBarMenuItems.ForYou]: [
@@ -160,5 +160,11 @@ export const trendExamples: Partial<TrendingSection> = {
       name: "Bacon",
       tweets: 27900,
     },
+  ],
+};
+
+export const notifications: Notifications = {
+  All: [
+    { id: 1, message: "Carlos Salvino and 9 others followed you" },
   ],
 };
