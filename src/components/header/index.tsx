@@ -3,7 +3,6 @@
 import { TopBarMenuContext } from "@/context";
 import { TopBarMenuItems } from "@/types";
 import cn from "classnames";
-import { log } from "console";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect } from "react";
@@ -32,13 +31,21 @@ export function Header() {
   const currentPageFromPathname = pathname.split("/")[1];
   useEffect(() => {
     //setCurrentPage(currentPageFromPathname);}
-    console.log(currentPageFromPathname, 'pathname');
+    if (!topBarMenuOptions[currentPageFromPathname]) return;
     setCurrentPage(topBarMenuOptions[currentPageFromPathname][0].name);
   }, [currentPageFromPathname]);
   //console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
   return (
-    <header className="h-[107px] w-full flex flex-col">
-      <div className="h-[50%] px-4 flex items-center justify-start relative">
+    <header
+      className={cn("h-[107px] w-full flex flex-col", {
+        "h-[53px]": !topBarMenuOptions[currentPageFromPathname],
+      })}
+    >
+      <div
+        className={cn("h-[50%] px-4 flex items-center justify-start relative", {
+          "h-full": !topBarMenuOptions[currentPageFromPathname],
+        })}
+      >
         <button className="w-[32px] h-[36px]">
           <Image
             src={"/images/profile.jpeg"}
@@ -58,37 +65,39 @@ export function Header() {
           />
         </button>
       </div>
-      <nav className="h-[50%] flex border-twitter overflow-hidden overflow-x-scroll w-full max-w-full">
-        {topBarMenuOptions[currentPageFromPathname].map((option) => {
-          return (
-            <a
-              key={option.name}
-              onClick={() => setCurrentPage(option.name)}
-              className={cn(
-                "px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
-                {
-                  "font-bold": currentPage === option.name,
-                }
-              )}
-            >
-              <span
-                className={cn("relative", {
-                  "text-twitter-gray": currentPage !== option.name,
-                })}
-              >
-                {option.name}
-                {currentPage === option.name && (
-                  <div
-                    className={cn(
-                      "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
-                    )}
-                  />
+      {topBarMenuOptions[currentPageFromPathname] && (
+        <nav className="h-[50%] flex border-twitter overflow-hidden overflow-x-scroll w-full max-w-full">
+          {topBarMenuOptions[currentPageFromPathname].map((option) => {
+            return (
+              <a
+                key={option.name}
+                onClick={() => setCurrentPage(option.name)}
+                className={cn(
+                  "px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
+                  {
+                    "font-bold": currentPage === option.name,
+                  }
                 )}
-              </span>
-            </a>
-          );
-        })}
-      </nav>
+              >
+                <span
+                  className={cn("relative", {
+                    "text-twitter-gray": currentPage !== option.name,
+                  })}
+                >
+                  {option.name}
+                  {currentPage === option.name && (
+                    <div
+                      className={cn(
+                        "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
+                      )}
+                    />
+                  )}
+                </span>
+              </a>
+            );
+          })}
+        </nav>
+      )}
     </header>
   );
 }

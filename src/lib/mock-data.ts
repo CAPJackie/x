@@ -1,4 +1,29 @@
-import { Notifications, TopBarMenuItems, TrendingSection } from "@/types";
+import {
+  DirectMessage,
+  Notifications,
+  Post,
+  TopBarMenuItems,
+  TrendingSection,
+} from "@/types";
+
+export const post: Post = {
+  id: "1",
+  tweet: "Hello World",
+  user: {
+    name: "John Doe",
+    username: "johndoe",
+    avatar: "/images/profile-x.jpeg",
+  },
+  comments: 20,
+  retweets: 30,
+  likes: 10,
+  views: 100,
+  date: "1h",
+  media: {
+    type: "image",
+    url: "/images/post.jpeg",
+  },
+};
 
 export const trendExamples: Partial<TrendingSection> = {
   [TopBarMenuItems.ForYou]: [
@@ -164,7 +189,58 @@ export const trendExamples: Partial<TrendingSection> = {
 };
 
 export const notifications: Notifications = {
-  All: [
-    { id: 1, message: "Carlos Salvino and 9 others followed you" },
-  ],
+  All: [{ id: 1, message: "Carlos Salvino and 9 others followed you" }],
 };
+
+export const directMessages: DirectMessage[] = [
+  {
+    id: 1,
+    user: {
+      name: "Carlos Salvino",
+      username: "CarlosSalvino",
+      avatar: "/images/profileSender.jpg",
+    },
+    date: "12/11/2023",
+    content: "Hello, how are you?",
+  },
+  {
+    id: 2,
+    user: {
+      name: "Devin Swan",
+      username: "DevinSwan",
+      avatar: "/images/profileSender.jpg",
+    },
+    date: "10/07/2022",
+    content: "Hello, how are you?",
+  },
+  {
+    id: 3,
+    user: {
+      name: "Bancolombia",
+      username: "Bancolombia",
+      avatar: "/images/profileSender.jpg",
+    },
+    date: "10/07/2022",
+    content: "Hello, how are you?",
+  },
+  {
+    id: 4,
+    user: {
+      name: "Test",
+      username: "test",
+      avatar: "/images/profileSender.jpg",
+    },
+    date: "10/07/2022",
+    content: "Hello, how are you?",
+  },
+  {
+    id: 5,
+    user: {
+      name: "Lorem Ipsum",
+      username: "loremIpsum",
+      avatar: "/images/profileSender.jpg",
+    },
+    date: "10/07/2022",
+    content: "Hello, how are you?",
+  },
+];

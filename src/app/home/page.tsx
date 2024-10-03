@@ -1,43 +1,6 @@
+import { post } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
-
-type Post = {
-  id: string;
-  tweet: string;
-  user: {
-    name: string;
-    username: string;
-    avatar: string;
-  };
-  comments: number;
-  retweets: number;
-  likes: number;
-  views: number;
-  date: string;
-  media: {
-    type: "image" | "video";
-    url: string;
-  };
-};
-
-const post: Post = {
-  id: "1",
-  tweet: "Hello World",
-  user: {
-    name: "John Doe",
-    username: "johndoe",
-    avatar: "/images/profile-x.jpeg",
-  },
-  comments: 20,
-  retweets: 30,
-  likes: 10,
-  views: 100,
-  date: "1h",
-  media: {
-    type: "image",
-    url: "/images/post.jpeg",
-  },
-};
 
 function ActionableItem({ icon, count }: { icon: string; count: number }) {
   return (
