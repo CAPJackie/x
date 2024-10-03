@@ -33,6 +33,7 @@ export function Header() {
     //setCurrentPage(currentPageFromPathname);}
     if (!topBarMenuOptions[currentPageFromPathname]) return;
     setCurrentPage(topBarMenuOptions[currentPageFromPathname][0].name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPageFromPathname]);
   //console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
   return (
