@@ -8,4 +8,5 @@ export enum TopBarMenuItems {
   All = "All",
   Verified = "Verified",
   Mentions = "Mentions",
+  Profile = "Profile",
 }
