@@ -16,6 +16,7 @@ export default function Profile({ params }: { params: { username: string } }) {
     );
     console.log(profile, "profile");
     setProfile(profile!);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.username]);
   return (
     <div>
