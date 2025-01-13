@@ -32,13 +32,20 @@ export function Header() {
   const pathname = usePathname();
   const currentPageFromPathname = pathname.split("/")[1];
   const isProfilePage = currentPage === TopBarMenuItems.Profile;
+
   useEffect(() => {
     //setCurrentPage(currentPageFromPathname);}
     if (!topBarMenuOptions[currentPageFromPathname]) return;
     setCurrentPage(topBarMenuOptions[currentPageFromPathname][0].name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPageFromPathname]);
-  //console.log(topBarMenuOptions[currentPageFromPathname], "pathname");
+
+  if (
+    topBarMenuOptions[currentPageFromPathname] &&
+    topBarMenuOptions[currentPageFromPathname].length === 0 || !profile
+  ) {
+    throw Error("Page not found");
+  }
   return (
     <header
       className={cn("h-[107px] w-full flex flex-col", {
@@ -59,9 +66,9 @@ export function Header() {
             </button>
           </Link>
           <div className="flex flex-col ml-5 space-y-1">
-            <h1 className="text-[17px] font-bold leading-5">{profile.name}</h1>
+            <h1 className="text-[17px] font-bold leading-5">{profile?.name}</h1>
             <span className="text-[13px] font-normal leading-4 text-twitter-gray">
-              {profile!.tweetCount} posts
+              {profile?.tweetCount} posts
             </span>
           </div>
         </div>
