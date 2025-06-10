@@ -19,7 +19,7 @@ export default function Profile({ params }: { params: { username: string } }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.username]);
   return (
-    <div>
+    <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
       <h1>Profile {params.username}</h1>
     </div>
   );

@@ -12,9 +12,10 @@ export function Footer() {
   };
 
   const handleScroll = () => {
+    // Only run on mobile view
+    if (window.innerWidth >= 768) return;
     const footer: HTMLElement | null = document.querySelector("footer");
     if (!footer) return;
-    // console.log(window.scrollY, "scrollY");
     if (window.scrollY < 50) {
       footer.style.opacity = "1";
       return;
@@ -48,9 +49,13 @@ export function Footer() {
     //TODO: Communities page
     //TODO: Tablet
     //TODO: Desktop
-    <footer className="fixed bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray bg-black">
+    <footer
+      className="fixed bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray bg-black
+      md:static md:h-[60px] md:max-w-[640px] md:mx-auto
+      lg:static lg:h-[70px] lg:max-w-[800px] lg:mx-auto"
+    >
       <nav className="h-full">
-        <ul className="flex flex-row items-center h-full justify-between">
+        <ul className="flex flex-row items-center h-full justify-between lg:justify-center lg:gap-8">
           <li key="1" className="w-full flex">
             <Link href={"/home"} className="w-full flex justify-center">
               <Image
