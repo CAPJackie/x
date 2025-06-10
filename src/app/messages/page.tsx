@@ -78,7 +78,7 @@ async function getDirectMessages(): Promise<DirectMessage[]> {
 export default async function Messages() {
   const directMessages = await getDirectMessages();
   return (
-    <div>
+    <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
       <SearchInput />
       {directMessages.map((dm) => (
         <Message key={dm.id} dm={dm} />
