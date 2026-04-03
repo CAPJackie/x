@@ -100,6 +100,7 @@ export function Header() {
                 alt="profile image"
                 width={64}
                 height={72}
+                loading="eager"
                 style={{
                   width: "100%",
                   height: "100%",

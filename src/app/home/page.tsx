@@ -73,7 +73,8 @@ export default async function Home() {
                   alt="media"
                   width={400}
                   height={400}
-                  className="w-[400px] h-[400px] rounded-2xl"
+                  className="w-[400px] rounded-2xl"
+                  style={{ height: "auto" }}
                 />
               </button>
             )}
