@@ -19,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "bg-black text-white")}>
-        <div className="mx-auto w-full max-w-[425px] lg:max-w-[600px] xl:max-w-[800px] 2xl:max-w-[1000px] min-h-screen flex flex-col">
-          <ClientLayout>{children}</ClientLayout>
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { Footer, Header } from "@/components";
+import { Footer, Header, Sidebar } from "@/components";
 import { ProfileContext, TopBarMenuContext } from "@/context";
 import { TopBarMenuItems } from "@/types";
 import { useState } from "react";
@@ -30,9 +30,16 @@ export default function ClientLayout({
   return (
     <TopBarMenuContext.Provider value={{ currentPage, setCurrentPage }}>
       <ProfileContext.Provider value={{ profile, setProfile }}>
-        <Header />
-        <div className="mb-[53px]">{children}</div>
-        <Footer />
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <div className="flex flex-col flex-1 ml-[68px]">
+            <div className="mx-auto w-full max-w-[425px] sm:max-w-[540px] lg:max-w-[600px] xl:max-w-[680px] 2xl:max-w-[780px] min-h-screen flex flex-col">
+              <Header />
+              <div className="flex-1">{children}</div>
+            </div>
+          </div>
+          <Footer />
+        </div>
       </ProfileContext.Provider>
     </TopBarMenuContext.Provider>
   );

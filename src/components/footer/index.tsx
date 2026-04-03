@@ -49,11 +49,7 @@ export function Footer() {
     //TODO: Communities page
     //TODO: Tablet
     //TODO: Desktop
-    <footer
-      className="fixed bottom-0 h-[53px] w-full border-t-[1px] border-twitter-dark-gray bg-black
-      md:static md:h-[60px] md:max-w-[640px] md:mx-auto
-      lg:static lg:h-[70px] lg:max-w-[800px] lg:mx-auto"
-    >
+    <footer className="hidden">
       <nav className="h-full">
         <ul className="flex flex-row items-center h-full justify-between lg:justify-center lg:gap-8">
           <li key="1" className="w-full flex">
