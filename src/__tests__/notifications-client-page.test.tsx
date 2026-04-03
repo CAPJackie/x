@@ -39,21 +39,15 @@ describe("NotificationsClientPage Component", () => {
 
   it("renders NoVerified when Verified page has no data", () => {
     renderWithContext(TopBarMenuItems.Verified, mockNotifications);
-    expect(
-      screen.getByText("Nothing to see here — yet"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Nothing to see here — yet")).toBeInTheDocument();
     // Check for the Learn more link which is specific to NoVerified
     expect(screen.getByText("Learn more")).toBeInTheDocument();
   });
 
   it("renders NoMentions when Mentions page has no data", () => {
     renderWithContext(TopBarMenuItems.Mentions, mockNotifications);
-    expect(
-      screen.getByText("Nothing to see here — yet"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/When someone mentions you/),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Nothing to see here — yet")).toBeInTheDocument();
+    expect(screen.getByText(/When someone mentions you/)).toBeInTheDocument();
   });
 
   it("renders Verified notifications when data is provided", () => {

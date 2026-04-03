@@ -15,12 +15,14 @@ There is no test suite configured.
 ## Architecture
 
 **Routing:** App Router with these routes:
+
 - `/` → permanently redirects to `/home` (configured in `next.config.mjs`)
 - `/home` — feed (async server component)
 - `/explore`, `/grok`, `/notifications`, `/messages` — section pages
 - `/[username]` — dynamic profile page
 
 **Layout hierarchy:**
+
 ```
 layout.tsx (Server) → sets metadata, fonts, responsive max-width container
   └── clientLayout.tsx (Client) → wraps app with context providers + Header/Footer
@@ -30,6 +32,7 @@ layout.tsx (Server) → sets metadata, fonts, responsive max-width container
 ```
 
 **State management:** Two React contexts in `src/context/`:
+
 - `TopBarMenuContext` — tracks the active navigation tab (`TopBarMenuItems` enum)
 - `ProfileContext` — holds the current viewed user's profile data
 

@@ -39,7 +39,10 @@ describe("cn utility function", () => {
 
   it("should handle complex conditional + tailwind merge scenario", () => {
     const isActive = true;
-    const result = cn("px-4 py-2", { "font-bold": isActive, "font-normal": !isActive });
+    const result = cn("px-4 py-2", {
+      "font-bold": isActive,
+      "font-normal": !isActive,
+    });
     expect(result).toBe("px-4 py-2 font-bold");
   });
 });

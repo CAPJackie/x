@@ -66,7 +66,7 @@ describe("Header Component", () => {
       expect(screen.getByAltText("profile image")).toBeInTheDocument();
     });
 
-    it('renders For you and Following tabs on /home', () => {
+    it("renders For you and Following tabs on /home", () => {
       renderHeader(TopBarMenuItems.ForYou, defaultProfile, "/home");
       expect(screen.getByText("For you")).toBeInTheDocument();
       expect(screen.getByText("Following")).toBeInTheDocument();

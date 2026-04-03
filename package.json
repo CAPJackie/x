@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "validate": "next build && eslint . && tsc --noEmit && prettier --check ."
+    "validate": "next build && eslint . && tsc --noEmit && prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.2",
+    "husky": "^9.1.7",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8",

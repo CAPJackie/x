@@ -5,9 +5,7 @@ import GrokHero from "@/app/grok/grok-hero";
 describe("GrokHero Component", () => {
   it("renders the Grok heading", () => {
     render(<GrokHero />);
-    expect(
-      screen.getByRole("heading", { level: 1 }),
-    ).toHaveTextContent("Grok");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Grok");
   });
 
   it("renders the disclaimer text", () => {

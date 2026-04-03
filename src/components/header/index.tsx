@@ -69,9 +69,7 @@ export function Header() {
             </button>
           </Link>
           <div className="flex flex-col ml-5 space-y-1">
-            <h1 className="text-[17px] font-bold leading-5">
-              {profile?.name}
-            </h1>
+            <h1 className="text-[17px] font-bold leading-5">{profile?.name}</h1>
             <span className="text-[13px] font-normal leading-4 text-twitter-gray">
               {profile?.tweetCount} posts
             </span>
