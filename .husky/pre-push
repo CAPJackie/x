@@ -1,6 +1,6 @@
-npm run format
-
-if ! git diff --exit-code --quiet; then
+echo "💅 Checking formatting..."
+if ! npx prettier --check . --log-level silent; then
+  npm run format
   echo ""
   echo "⚠️  Prettier reformatted some files. Please commit the changes and push again:"
   echo ""
