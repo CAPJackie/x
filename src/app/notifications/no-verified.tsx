@@ -7,8 +7,8 @@ export function NoVerified() {
         src="/images/noVerified.png"
         alt="No verified notifications"
         width={336}
-              height={168}
-              className="my-9"
+        height={168}
+        className="my-9"
       />
       <div className="px-3 text-justify ">
         <h2 className="text-3xl font-extrabold mb-2 leading-9">

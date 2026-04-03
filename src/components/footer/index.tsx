@@ -23,7 +23,7 @@ export function Footer() {
     const footerHeight = footer.offsetHeight;
     if (Number(footer.style.opacity) > 0.3) {
       footer.style.opacity = String(
-        (footerHeight - (window.scrollY - 50)) / footerHeight
+        (footerHeight - (window.scrollY - 50)) / footerHeight,
       );
     }
   };

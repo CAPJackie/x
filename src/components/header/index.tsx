@@ -55,7 +55,7 @@ export function Header() {
         {
           "h-[53px] md:h-[70px] lg:h-[90px]":
             !topBarMenuOptions[currentPageFromPathname],
-        }
+        },
       )}
     >
       {isProfilePage && (
@@ -90,7 +90,7 @@ export function Header() {
               {
                 "h-full md:h-full lg:h-full":
                   !topBarMenuOptions[currentPageFromPathname],
-              }
+              },
             )}
           >
             <button className="w-[32px] h-[36px] md:w-[48px] md:h-[54px] lg:w-[64px] lg:h-[72px]">
@@ -112,7 +112,7 @@ export function Header() {
                 "absolute left-1/2 -translate-x-1/2",
                 "w-[24px] h-[24px]",
                 "md:w-[32px] md:h-[32px]",
-                "lg:w-[40px] lg:h-[40px]"
+                "lg:w-[40px] lg:h-[40px]",
               )}
             >
               <Image
@@ -139,7 +139,7 @@ export function Header() {
                       "px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
                       {
                         "font-bold": currentPage === option.name,
-                      }
+                      },
                     )}
                   >
                     <span
@@ -151,7 +151,7 @@ export function Header() {
                       {currentPage === option.name && (
                         <div
                           className={cn(
-                            "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]"
+                            "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]",
                           )}
                         />
                       )}

@@ -12,7 +12,7 @@ export default function Profile({ params }: { params: { username: string } }) {
   useEffect(() => {
     setCurrentPage(TopBarMenuItems.Profile);
     const profile = profilesData.find(
-      (profile) => profile.username === params.username
+      (profile) => profile.username === params.username,
     );
     console.log(profile, "profile");
     setProfile(profile!);
