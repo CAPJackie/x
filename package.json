@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "validate": "next build && eslint . && tsc --noEmit && prettier --check ."
   },
   "dependencies": {
@@ -19,14 +21,22 @@
     "tailwind-merge": "^2.5.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.2",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "postcss": "^8",
     "prettier": "^3.8.1",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.4.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
