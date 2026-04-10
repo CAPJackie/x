@@ -1,16 +1,18 @@
 "use client";
 
 import { ProfileContext, TopBarMenuContext } from "@/context";
+import { cn } from "@/lib/utils";
 import { TopBarMenuItems } from "@/types";
-import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 export function Header() {
   const { currentPage, setCurrentPage } = useContext(TopBarMenuContext);
   const { profile } = useContext(ProfileContext);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const lastScrollYRef = useRef(0);
   const topBarMenuOptions: { [key: string]: { name: TopBarMenuItems }[] } = {
     home: [
       { name: TopBarMenuItems.ForYou },
@@ -34,6 +36,21 @@ export function Header() {
   const isProfilePage = currentPage === TopBarMenuItems.Profile;
 
   useEffect(() => {
+    const handleHeaderScroll = () => {
+      if (window.innerWidth > 425) return;
+      const currentY = window.scrollY;
+      if (currentY > lastScrollYRef.current && currentY > 10) {
+        setHeaderHidden(true);
+      } else {
+        setHeaderHidden(false);
+      }
+      lastScrollYRef.current = currentY;
+    };
+    window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleHeaderScroll);
+  }, []);
+
+  useEffect(() => {
     //setCurrentPage(currentPageFromPathname);}
     if (!topBarMenuOptions[currentPageFromPathname]) return;
     setCurrentPage(topBarMenuOptions[currentPageFromPathname][0].name);
@@ -49,12 +66,36 @@ export function Header() {
   }
   return (
     <header
-      className={cn("w-full flex flex-col", {
-        "h-[53px]":
-          !!topBarMenuOptions[currentPageFromPathname] || isProfilePage,
-        "h-0": !topBarMenuOptions[currentPageFromPathname] && !isProfilePage,
-      })}
+      className={cn(
+        "w-full flex flex-col",
+        "max-[425px]:sticky max-[425px]:top-0 max-[425px]:z-50 max-[425px]:bg-black max-[425px]:transition-transform max-[425px]:duration-300",
+        {
+          "h-[53px]":
+            !!topBarMenuOptions[currentPageFromPathname] || isProfilePage,
+          "h-0": !topBarMenuOptions[currentPageFromPathname] && !isProfilePage,
+          "max-[425px]:h-auto": true,
+          "max-[425px]:-translate-y-full": headerHidden,
+        },
+      )}
     >
+      {/* Phone-only top bar: profile image | X logo | Subscribe */}
+      {!isProfilePage && (
+        <div className="hidden max-[425px]:flex items-center justify-between px-4 h-[53px]">
+          <button className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src="/images/profile.jpeg"
+              alt="Profile"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+            />
+          </button>
+          <Image src="/images/x.svg" alt="X" width={24} height={24} />
+          <button className="border border-white rounded-full px-4 py-1.5 text-sm font-bold leading-none flex-shrink-0">
+            Subscribe
+          </button>
+        </div>
+      )}
       {isProfilePage && (
         <div className="h-[53px] w-full flex items-center justify-start px-4 border-b border-twitter">
           <Link href="/">
@@ -78,29 +119,6 @@ export function Header() {
       )}
       {!isProfilePage && (
         <>
-          {/* Avatar + X logo row — always hidden, sidebar owns these */}
-          <div className="hidden">
-            <button>
-              <Image
-                src={"/images/profile.jpeg"}
-                className="rounded-full"
-                alt="profile image"
-                width={64}
-                height={72}
-                loading="eager"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </button>
-            <button>
-              <Image
-                src={"/images/x.svg"}
-                alt="logo"
-                width={40}
-                height={40}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </button>
-          </div>
           {topBarMenuOptions[currentPageFromPathname] && (
             <nav className="h-[53px] flex border-twitter overflow-hidden overflow-x-scroll w-full max-w-full">
               {topBarMenuOptions[currentPageFromPathname].map((option) => {

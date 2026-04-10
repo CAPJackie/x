@@ -32,8 +32,8 @@ export default function ClientLayout({
       <ProfileContext.Provider value={{ profile, setProfile }}>
         <div className="flex min-h-screen">
           <Sidebar />
-          <div className="flex flex-col flex-1 ml-[68px]">
-            <div className="mx-auto w-full max-w-[425px] sm:max-w-[540px] lg:max-w-[600px] xl:max-w-[680px] 2xl:max-w-[780px] min-h-screen flex flex-col">
+          <div className="flex flex-col flex-1 ml-[68px] max-[425px]:ml-0">
+            <div className="mx-auto w-full max-w-[425px] sm:max-w-[540px] lg:max-w-[600px] xl:max-w-[680px] 2xl:max-w-[780px] min-h-screen flex flex-col max-[425px]:pb-[53px]">
               <Header />
               <div className="flex-1">{children}</div>
             </div>

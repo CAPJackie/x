@@ -18,7 +18,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col fixed left-0 top-0 h-screen w-[68px] border-r border-twitter-dark-gray bg-black z-40 items-center py-3">
+    <aside className="flex flex-col fixed left-0 top-0 h-screen w-[68px] border-r border-twitter-dark-gray bg-black z-40 items-center py-3 max-[425px]:hidden">
       <Link
         href="/home"
         className="p-3 rounded-full hover:bg-white/10 transition-colors mb-2"

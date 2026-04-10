@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useInsertionEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 export function Footer() {
   const pathname = usePathname();
@@ -12,20 +12,11 @@ export function Footer() {
   };
 
   const handleScroll = () => {
-    // Only run on mobile view
-    if (window.innerWidth >= 768) return;
+    if (window.innerWidth > 425) return;
     const footer: HTMLElement | null = document.querySelector("footer");
     if (!footer) return;
-    if (window.scrollY < 50) {
-      footer.style.opacity = "1";
-      return;
-    }
-    const footerHeight = footer.offsetHeight;
-    if (Number(footer.style.opacity) > 0.3) {
-      footer.style.opacity = String(
-        (footerHeight - (window.scrollY - 50)) / footerHeight,
-      );
-    }
+    const opacity = Math.max(0.4, 1 - window.scrollY / 300);
+    footer.style.opacity = String(opacity);
   };
 
   useEffect(() => {
@@ -49,8 +40,8 @@ export function Footer() {
     //TODO: Communities page
     //TODO: Tablet
     //TODO: Desktop
-    <footer className="hidden">
-      <nav className="h-full">
+    <footer className="hidden max-[425px]:flex fixed bottom-0 left-0 right-0 h-[53px] bg-black border-t border-twitter-dark-gray z-50 transition-opacity duration-300">
+      <nav className="h-full w-full">
         <ul className="flex flex-row items-center h-full justify-between lg:justify-center lg:gap-8">
           <li key="1" className="w-full flex">
             <Link href={"/home"} className="w-full flex justify-center">
