@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         "twitter-gray": "#71767b",
         "twitter-dark-gray": "#2f3336",
+        "twitter-light-gray": "#b6b9bc",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

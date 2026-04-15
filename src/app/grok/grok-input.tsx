@@ -7,7 +7,7 @@ export default function GrokInput() {
   const [value, setValue] = useState("");
 
   return (
-    <div className="mx-4 mb-4 rounded-2xl bg-[#1a1a1a] px-4 pt-4 pb-3">
+    <div className="mx-4 mb-4 rounded-3xl border border-white bg-[#1a1a1a] px-4 pt-4 pb-3">
       <textarea
         rows={1}
         placeholder="Ask anything"
