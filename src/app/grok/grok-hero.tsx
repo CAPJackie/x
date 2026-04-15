@@ -7,7 +7,6 @@ const stars = Array.from({ length: 60 }, (_, index) => ({
 }));
 
 export default function GrokHero() {
-
   return (
     <div className="relative flex-1 w-full overflow-hidden">
       {stars.map((s) => (

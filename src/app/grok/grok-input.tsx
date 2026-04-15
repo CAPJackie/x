@@ -18,7 +18,12 @@ export default function GrokInput() {
       <div className="flex items-center justify-between mt-3">
         {/* Left: attachment */}
         <button className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/10 transition-colors">
-          <Image src="/images/add-single-file.svg" alt="attach" width={20} height={20} />
+          <Image
+            src="/images/add-single-file.svg"
+            alt="attach"
+            width={20}
+            height={20}
+          />
         </button>
         {/* Right: Auto selector + voice */}
         <div className="flex items-center gap-2">
@@ -32,8 +37,9 @@ export default function GrokInput() {
             </svg>
           </button>
           <button
-            className={`flex items-center justify-center w-9 h-9 rounded-full transition-colors ${value.trim() ? "bg-white" : "bg-[#2f3336] hover:bg-[#3a3f44]"
-              }`}
+            className={`flex items-center justify-center w-9 h-9 rounded-full transition-colors ${
+              value.trim() ? "bg-white" : "bg-[#2f3336] hover:bg-[#3a3f44]"
+            }`}
           >
             {value.trim() ? (
               <Image src="/images/send.svg" alt="send" width={18} height={18} />
