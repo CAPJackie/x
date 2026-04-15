@@ -1,4 +1,4 @@
-import { post } from "@/lib/mock-data";
+import { posts } from "@/lib/mock-data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,12 +20,11 @@ function ActionableItem({ icon, count }: { icon: string; count: number }) {
 }
 
 export default async function Home() {
-  const posts = Array.from({ length: 10 }).map((_, index) => post);
   return (
     <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
       {posts.map((post, index) => (
         <div
-          key={post.id + index}
+          key={post.id}
           className="flex flex-row py-[12px] px-[16px] border-twitter text-[15px]"
         >
           <div className="flex items-start mr-2">
@@ -66,10 +65,10 @@ export default async function Home() {
             <div className="text-left font-normal">
               <p>{post.tweet}</p>
             </div>
-            {post.media.type === "image" && (
+            {post.media?.type === "image" && (
               <button className="mt-3 ">
                 <Image
-                  src={post.media.url}
+                  src={post.media!.url}
                   alt="media"
                   width={400}
                   height={400}

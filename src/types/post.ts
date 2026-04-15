@@ -9,7 +9,7 @@ export type Post = {
   likes: number;
   views: number;
   date: string;
-  media: {
+  media?: {
     type: "image" | "video";
     url: string;
   };
