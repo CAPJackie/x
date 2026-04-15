@@ -1,11 +1,13 @@
 import GrokCommonSearches from "./grok-common-searches";
 import GrokHero from "./grok-hero";
+import GrokInput from "./grok-input";
 
 export default function GrokPage() {
   return (
-    <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+    <div className="flex flex-col h-full min-h-[calc(100vh-120px)]">
       <GrokHero />
       <GrokCommonSearches />
+      <GrokInput />
     </div>
   );
 }

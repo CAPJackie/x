@@ -1,17 +1,29 @@
-import GrokInput from "./grok-input";
+const stars = Array.from({ length: 60 }, (_, index) => ({
+  id: index,
+  top: `${(index * 37 + 11) % 100}%`,
+  left: `${(index * 53 + 17) % 100}%`,
+  size: index % 5 === 0 ? 2 : 1,
+  opacity: Number((0.35 + ((index * 19) % 45) / 100).toFixed(2)),
+}));
 
 export default function GrokHero() {
+
   return (
-    <>
-      <div className="h-[20vh]"></div>
-      <div className="flex flex-col items-center justify-center px-4">
-        <h1 className="text-4xl font-medium mb-3">Grok</h1>
-        <GrokInput />
-        <span className="p-2 text-twitter-dark-gray text-[15px]">
-          Grok can make mistakes. Verify its outputs.
-        </span>
-      </div>
-      <div className="h-[10vh]"></div>
-    </>
+    <div className="relative flex-1 w-full overflow-hidden">
+      {stars.map((s) => (
+        <span
+          key={s.id}
+          aria-hidden="true"
+          className="absolute rounded-full bg-white"
+          style={{
+            top: s.top,
+            left: s.left,
+            width: s.size,
+            height: s.size,
+            opacity: s.opacity,
+          }}
+        />
+      ))}
+    </div>
   );
 }
