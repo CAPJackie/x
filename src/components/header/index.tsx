@@ -27,7 +27,6 @@ export function Header() {
     ],
     notifications: [
       { name: TopBarMenuItems.All },
-      { name: TopBarMenuItems.Verified },
       { name: TopBarMenuItems.Mentions },
     ],
   };
@@ -79,7 +78,7 @@ export function Header() {
       )}
     >
       {/* Phone-only top bar: profile image | X logo | Subscribe */}
-      {!isProfilePage && (
+      {!isProfilePage && currentPageFromPathname !== "notifications" && (
         <div className="hidden max-[425px]:flex items-center justify-between px-4 h-[53px]">
           <button className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
             <Image
@@ -93,6 +92,28 @@ export function Header() {
           <Image src="/images/x.svg" alt="X" width={24} height={24} />
           <button className="border border-white rounded-full px-4 py-1.5 text-sm font-bold leading-none flex-shrink-0">
             Subscribe
+          </button>
+        </div>
+      )}
+      {/* Phone-only top bar for notifications: profile image | Notifications | gear */}
+      {!isProfilePage && currentPageFromPathname === "notifications" && (
+        <div className="hidden max-[425px]:flex items-center justify-between px-4 h-[53px]">
+          <div className="flex items-center gap-3 flex-1">
+            <button className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+              <Image
+                src="/images/profile.jpeg"
+                alt="Profile"
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+              />
+            </button>
+            <span className="text-[17px] font-bold">Notifications</span>
+          </div>
+          <button className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
+              <path d="M12 8.666c-1.843 0-3.333 1.49-3.333 3.334 0 1.843 1.49 3.333 3.333 3.333 1.843 0 3.333-1.49 3.333-3.333 0-1.844-1.49-3.334-3.333-3.334zm7.5 2.167c.032-.35.05-.7.05-1.083s-.018-.733-.05-1.083l2.301-1.334c.217-.125.274-.4.133-.608l-2.167-3.75c-.14-.207-.433-.274-.65-.166l-2.7 1.083c-.567-.433-1.183-.8-1.85-1.083l-.4-2.867C14.117.217 13.883 0 13.6 0h-4.2c-.283 0-.517.217-.567.5l-.4 2.867C7.767 3.65 7.15 4.017 6.567 4.45L3.867 3.367c-.25-.1-.533 0-.65.166L1.05 7.283c-.133.208-.083.483.133.609l2.301 1.333c-.032.35-.05.7-.05 1.083s.018.733.05 1.083L1.183 12.725c-.216.125-.274.4-.133.608l2.167 3.75c.14.208.433.275.65.167l2.7-1.083c.566.433 1.183.8 1.85 1.083l.4 2.867c.05.283.283.5.566.5h4.2c.284 0 .517-.217.567-.5l.4-2.867c.667-.283 1.283-.65 1.85-1.083l2.7 1.083c.25.1.533 0 .65-.167l2.166-3.75c.134-.208.084-.483-.133-.608l-2.3-1.334z" />
+            </svg>
           </button>
         </div>
       )}
@@ -127,7 +148,7 @@ export function Header() {
                     key={option.name}
                     onClick={() => setCurrentPage(option.name)}
                     className={cn(
-                      "px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
+                      "relative px-4 flex justify-center items-center font-medium active:bg-[#e7e9ea]/10 min-w-[56px] shrink-0 grow",
                       {
                         "font-bold": currentPage === option.name,
                       },
@@ -139,14 +160,10 @@ export function Header() {
                       })}
                     >
                       {option.name}
-                      {currentPage === option.name && (
-                        <div
-                          className={cn(
-                            "h-[4px] w-full absolute bg-[#1d9bf0] rounded-full bottom-[-14px]",
-                          )}
-                        />
-                      )}
                     </span>
+                    {currentPage === option.name && (
+                      <div className="h-[4px] w-20 absolute bg-[#1d9bf0] rounded-full bottom-0 left-1/2 -translate-x-1/2" />
+                    )}
                   </a>
                 );
               })}
