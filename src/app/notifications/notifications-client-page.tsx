@@ -25,7 +25,10 @@ export default function NotificationsClientPage({
   if (validPage === "Mentions" && !currentNotifications) {
     return <NoMentions />;
   }
-  if (validPage === "All" && (!currentNotifications || currentNotifications.length === 0)) {
+  if (
+    validPage === "All" &&
+    (!currentNotifications || currentNotifications.length === 0)
+  ) {
     return <NoAllNotifications />;
   }
   return (
