@@ -6,7 +6,8 @@ Architecture, routes and conventions are shared with Copilot — keep them in on
 
 ## Claude-specific notes
 
-- Final check: `npm run validate` (build → eslint → tsc → prettier --check). Husky runs on commit.
+- `npm run validate` (build → eslint → tsc → prettier --check) runs automatically in the husky
+  **pre-push** hook — don't run lint/format yourself.
 - Styling: Tailwind 3 (`tailwind.config.ts`) + `clsx`/`tailwind-merge` — not Tailwind v4, no shadcn.
 - `.agents/skills/` holds skills for other agents (installed via `skills-lock.json`); Claude
   doesn't load them — ignore unless asked.
