@@ -2,6 +2,9 @@
   "name": "x",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,26 +15,24 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "next": "^16.2.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "tailwind-merge": "^2.5.3"
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^2.6.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.2",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
     "husky": "^9.1.7",
-    "lint-staged": "^17.6.1",
-    "postcss": "^8",
-    "prettier": "^3.8.1",
-    "tailwindcss": "^3.4.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "lint-staged": "^17.6.2",
+    "postcss": "^8.5.33",
+    "prettier": "^3.10.1",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~5.9.3"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
