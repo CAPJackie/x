@@ -12,5 +12,8 @@ export type Post = {
   media?: {
     type: "image" | "video";
     url: string;
+    /** Intrinsic size, used to reserve space and keep the aspect ratio. */
+    width: number;
+    height: number;
   };
 };

@@ -24,11 +24,12 @@ There is no test suite configured.
 **Layout hierarchy:**
 
 ```
-layout.tsx (Server) → sets metadata, fonts, responsive max-width container
+layout.tsx (Server) → sets metadata, fonts
   └── clientLayout.tsx (Client) → wraps app with context providers + Header/Footer
-        ├── Header (client, consumes context)
-        ├── {children}
-        └── Footer (client, consumes context)
+        ├── Sidebar (tablet+)
+        ├── <main> Header + {children} (600px column on tablet+)
+        ├── RightSidebar (desktop)
+        └── Footer (mobile tab bar)
 ```
 
 **State management:** Two React contexts in `src/context/`:
@@ -38,7 +39,7 @@ layout.tsx (Server) → sets metadata, fonts, responsive max-width container
 
 Pages that change global state (e.g., `[username]/page.tsx`) do so via `useEffect` on mount, calling context setters.
 
-**Data:** All data is mock/static, defined in `src/lib/mock-data/`. No API routes or database.
+**Data:** All data is mock/static, defined in `src/lib/mock-data/` (`users.ts` holds shared authors and `currentUser`; feed = `post.ts` + `more-posts.ts`). No API routes or database.
 
 ## Key Conventions
 
@@ -52,6 +53,11 @@ Pages that change global state (e.g., `[username]/page.tsx`) do so via `useEffec
 
 **Custom Tailwind colors** — use `twitter-gray` (`#71767b`) and `twitter-dark-gray` (`#2f3336`) for Twitter-like UI elements. The app uses a black background (`bg-black`) and white text by default.
 
-**Responsive layout** — the app is constrained to a centered column with breakpoint-aware max-widths (`max-w-[425px]` → `lg:max-w-[600px]` → `xl:max-w-[800px]` → `2xl:max-w-[1000px]`). Inner page padding follows `px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32`.
+**Responsive layout** — mobile-first with three layouts. Breakpoints live in `src/lib/breakpoints.ts` and are the only Tailwind screens (`tablet:` ≥768px, `desktop:` ≥1280px; default `sm`/`md`/`lg`/`xl` are disabled):
+
+- mobile (unprefixed): sticky top bar + fixed bottom tab bar (`Footer`), full-width column.
+- `tablet:` icon-only left `Sidebar` + 600px center column.
+- `desktop:` labeled `Sidebar` + center column + `RightSidebar` (search, trends, who to follow).
+  In client code use `isAtLeast("tablet")` / `mediaQueries` from `@/lib` instead of hardcoded widths.
 
 **Types** — all shared interfaces live in `src/types/`. Use the `TopBarMenuItems` enum (not raw strings) for navigation state.

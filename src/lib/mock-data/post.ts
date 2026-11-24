@@ -1,4 +1,5 @@
 import { Post } from "@/types";
+import { morePosts } from "./more-posts";
 
 export const post: Post = {
   id: "1",
@@ -16,10 +17,12 @@ export const post: Post = {
   media: {
     type: "image",
     url: "/images/post.jpeg",
+    width: 1080,
+    height: 1060,
   },
 };
 
-export const posts: Post[] = [
+const basePosts: Post[] = [
   {
     id: "1",
     tweet:
@@ -64,7 +67,12 @@ export const posts: Post[] = [
     likes: 11400,
     views: 6500000,
     date: "31m",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "4",
@@ -95,7 +103,12 @@ export const posts: Post[] = [
     likes: 142000,
     views: 4800000,
     date: "1h",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "6",
@@ -141,7 +154,12 @@ export const posts: Post[] = [
     likes: 9700,
     views: 3200000,
     date: "3h",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "9",
@@ -187,7 +205,12 @@ export const posts: Post[] = [
     likes: 48900,
     views: 2700000,
     date: "6h",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "12",
@@ -247,7 +270,12 @@ export const posts: Post[] = [
     likes: 62100,
     views: 2400000,
     date: "10h",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "16",
@@ -308,7 +336,12 @@ export const posts: Post[] = [
     likes: 37800,
     views: 890000,
     date: "16h",
-    media: { type: "image", url: "/images/post.jpeg" },
+    media: {
+      type: "image",
+      url: "/images/post.jpeg",
+      width: 1080,
+      height: 1060,
+    },
   },
   {
     id: "20",
@@ -326,3 +359,5 @@ export const posts: Post[] = [
     date: "18h",
   },
 ];
+
+export const posts: Post[] = [...basePosts, ...morePosts];

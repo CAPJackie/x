@@ -32,7 +32,7 @@ export default function NotificationsClientPage({
     return <NoAllNotifications />;
   }
   return (
-    <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+    <div className="flex flex-col">
       {notifications[validPage]?.map((notification) => (
         <article
           key={notification.id}
@@ -44,6 +44,7 @@ export default function NotificationsClientPage({
               alt="blue profile notification"
               width={21}
               height={21}
+              className="h-[21px] w-[21px]"
             />
           </div>
           <div className="flex-1">{notification.message}</div>

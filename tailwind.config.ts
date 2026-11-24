@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { breakpoints } from "./src/lib/breakpoints";
 
 const config: Config = {
   content: [
@@ -7,6 +8,11 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // Mobile-first: unprefixed = mobile, `tablet:` and `desktop:` = larger screens.
+    screens: {
+      tablet: `${breakpoints.tablet}px`,
+      desktop: `${breakpoints.desktop}px`,
+    },
     extend: {
       colors: {
         "twitter-gray": "#71767b",

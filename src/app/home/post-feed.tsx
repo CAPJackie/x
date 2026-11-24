@@ -79,10 +79,10 @@ function ImageModal({ post, onClose }: { post: Post; onClose: () => void }) {
         <Image
           src={post.media!.url}
           alt="expanded media"
-          width={1200}
-          height={900}
-          className="max-h-full max-w-full object-contain rounded"
-          style={{ maxHeight: "calc(100vh - 140px)" }}
+          width={post.media!.width}
+          height={post.media!.height}
+          sizes="100vw"
+          className="h-[calc(100vh-140px)] w-full rounded object-contain"
         />
       </div>
 
@@ -146,25 +146,27 @@ function ImageModal({ post, onClose }: { post: Post; onClose: () => void }) {
 export default function PostFeed({ posts }: { posts: Post[] }) {
   const [expandedPost, setExpandedPost] = useState<Post | null>(null);
   const close = useCallback(() => setExpandedPost(null), []);
+  // The first image in the feed is usually the LCP element.
+  const firstMediaPostId = posts.find((p) => p.media?.type === "image")?.id;
 
   return (
     <>
       {expandedPost && <ImageModal post={expandedPost} onClose={close} />}
 
-      <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+      <div className="flex flex-col">
         {posts.map((post) => (
           <div
             key={post.id}
             className="flex flex-row py-[12px] px-[16px] border-twitter text-[15px]"
           >
-            <div className="flex items-start mr-2">
+            <div className="mr-2 flex shrink-0 items-start">
               <Link href={`/${post.user.username}`}>
                 <Image
                   src={post.user.avatar}
                   alt="avatar"
                   width={40}
                   height={40}
-                  className="min-w-[40px] min-h-[40px] rounded-full flex-1"
+                  className="h-10 w-10 rounded-full object-cover"
                 />
               </Link>
             </div>
@@ -193,21 +195,22 @@ export default function PostFeed({ posts }: { posts: Post[] }) {
                 </div>
               </div>
               <div className="text-left font-normal">
-                <p>{post.tweet}</p>
+                <p className="whitespace-pre-line break-words">{post.tweet}</p>
               </div>
               {post.media?.type === "image" && (
                 <button
-                  className="mt-3 self-start cursor-pointer"
+                  className="mt-3 w-full cursor-pointer"
                   onClick={() => setExpandedPost(post)}
                   aria-label="Expand image"
                 >
                   <Image
                     src={post.media.url}
                     alt="media"
-                    width={400}
-                    height={400}
-                    className="w-[400px] rounded-2xl"
-                    style={{ height: "auto" }}
+                    width={post.media.width}
+                    height={post.media.height}
+                    sizes="(min-width: 768px) 516px, calc(100vw - 72px)"
+                    loading={post.id === firstMediaPostId ? "eager" : "lazy"}
+                    className="h-auto w-full rounded-2xl border border-twitter-dark-gray"
                   />
                 </button>
               )}

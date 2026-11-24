@@ -8,7 +8,7 @@ import { useContext } from "react";
 export default function Explore() {
   const { currentPage } = useContext(TopBarMenuContext);
   return (
-    <div className="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+    <div className="flex flex-col">
       <div className="border-twitter px-[16px] py-[12px]">
         <div className="rounded-2xl bg-[#16181c] px-[4px] py-[12px]">
           <div className="flex justify-center">
@@ -18,7 +18,7 @@ export default function Explore() {
           </div>
         </div>
       </div>
-      <ul className="flex flex-col gap-2 md:grid md:grid-cols-2 lg:grid-cols-3">
+      <ul className="flex flex-col">
         {trendExamples[currentPage]?.map((trend) => (
           <li
             key={trend.name}
@@ -35,6 +35,7 @@ export default function Explore() {
                     alt="three dots"
                     width={24}
                     height={24}
+                    className="h-6 w-6"
                   />
                 </button>
               </div>

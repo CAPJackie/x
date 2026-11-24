@@ -3,3 +3,4 @@ export * from "./notifications";
 export * from "./post";
 export * from "./profiles-data";
 export * from "./trend-examples";
+export * from "./users";

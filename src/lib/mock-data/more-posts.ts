@@ -1,0 +1,291 @@
+import { Post, User } from "@/types";
+import { mockUsers as u } from "./users";
+
+const IMAGES = {
+  square: {
+    type: "image",
+    url: "/images/post.jpeg",
+    width: 1080,
+    height: 1060,
+  },
+  wide: { type: "image", url: "/images/post2.jpeg", width: 1280, height: 720 },
+  banner: { type: "image", url: "/images/post3.jpeg", width: 596, height: 335 },
+} as const satisfies Record<string, Post["media"]>;
+
+type Stats = [comments: number, retweets: number, likes: number, views: number];
+
+let nextId = 100;
+const p = (
+  user: User,
+  tweet: string,
+  [comments, retweets, likes, views]: Stats,
+  date: string,
+  media?: Post["media"],
+): Post => ({
+  id: String(nextId++),
+  user,
+  tweet,
+  comments,
+  retweets,
+  likes,
+  views,
+  date,
+  ...(media && { media: { ...media } }),
+});
+
+/** Extra fake feed posts until a real database exists. */
+export const morePosts: Post[] = [
+  p(
+    u.nasa,
+    "Tonight's launch window opens at 21:42 UTC. Weather is 80% go. 🚀",
+    [320, 2100, 18400, 640000],
+    "19h",
+    IMAGES.wide,
+  ),
+  p(
+    u.rustacean,
+    "The borrow checker isn't fighting you. It's teaching you. Slowly. Painfully. Lovingly.",
+    [210, 940, 8800, 210000],
+    "20h",
+  ),
+  p(
+    u.chef,
+    "Arepas de queso para el desayuno. No hay mejor forma de empezar el lunes.",
+    [88, 120, 2400, 41000],
+    "20h",
+    IMAGES.square,
+  ),
+  p(
+    u.coffee,
+    "Third coffee of the day and it's 9:14am. Productivity is a state of mind.",
+    [45, 310, 5100, 98000],
+    "21h",
+  ),
+  p(
+    u.nba,
+    "That buzzer-beater from half court. I'm still not over it. Watch it 10 more times with me.",
+    [1400, 6700, 52000, 2100000],
+    "21h",
+    IMAGES.banner,
+  ),
+  p(
+    u.futbol,
+    "¡GOOOL en el minuto 93! El estadio se vino abajo. Qué partido.",
+    [2300, 8900, 71000, 3400000],
+    "22h",
+  ),
+  p(
+    u.designer,
+    "Hot take: your design system doesn't need 14 shades of gray. It needs 5 and some discipline.",
+    [190, 870, 6400, 150000],
+    "22h",
+  ),
+  p(
+    u.gamer,
+    "Spent 6 hours in the character creator. Haven't started the game yet. No regrets.",
+    [520, 1100, 14700, 380000],
+    "23h",
+  ),
+  p(
+    u.traveler,
+    "Woke up to this view. Remote work has its perks.",
+    [140, 450, 9800, 220000],
+    "23h",
+    IMAGES.wide,
+  ),
+  p(
+    u.climate,
+    "Global sea surface temperatures hit a new daily record for the 14th consecutive month. Thread on what it means 🧵",
+    [890, 5400, 21000, 980000],
+    "1d",
+  ),
+  p(
+    u.indie,
+    "Month 7 of building in public:\n• $4.2K MRR\n• 312 paying users\n• 0 employees\n• 1 very tired founder",
+    [410, 1300, 16200, 470000],
+    "1d",
+  ),
+  p(
+    u.frontend,
+    "CSS container queries changed how I build components. Media queries for layout, container queries for components. That's the rule.",
+    [230, 1500, 11300, 260000],
+    "1d",
+  ),
+  p(
+    u.security,
+    "Reminder: rotate your API keys. No, the one in your .env from 2021 doesn't count as 'rotated'.",
+    [160, 2200, 9700, 310000],
+    "1d",
+  ),
+  p(
+    u.music,
+    "Found a first pressing of my favorite album at a flea market for $3. Today is a good day.",
+    [95, 210, 4300, 77000],
+    "1d",
+    IMAGES.square,
+  ),
+  p(
+    u.photo,
+    "Golden hour in the mountains. No filter, just patience.",
+    [120, 980, 13400, 290000],
+    "1d",
+    IMAGES.banner,
+  ),
+  p(
+    u.books,
+    "Finished 52 books this year. Here's the one that changed how I think about work 👇",
+    [340, 760, 7200, 180000],
+    "1d",
+  ),
+  p(
+    u.fitness,
+    "You don't need motivation. You need a schedule you can't negotiate with.",
+    [210, 3100, 24000, 610000],
+    "1d",
+  ),
+  p(
+    u.memes,
+    "me: I'll just fix this one small bug\nalso me, 4 hours later: rewriting the entire auth layer",
+    [780, 9200, 88000, 2600000],
+    "1d",
+  ),
+  p(
+    u.science,
+    "Octopuses have three hearts, blue blood, and can taste with their arms. They are not from here.",
+    [610, 7400, 63000, 1900000],
+    "2d",
+    IMAGES.wide,
+  ),
+  p(
+    u.bogota,
+    "TransMilenio anuncia nuevas rutas troncales desde el próximo lunes. Aquí los detalles 👇",
+    [430, 1200, 5600, 260000],
+    "2d",
+  ),
+  p(
+    u.nasa,
+    "New images from the deep field survey reveal galaxies formed just 300 million years after the Big Bang.",
+    [980, 12000, 97000, 3800000],
+    "2d",
+    IMAGES.square,
+  ),
+  p(
+    u.rustacean,
+    "Rewrote our hot path in Rust. p99 latency went from 120ms to 9ms. Yes, I'm going to be insufferable about it.",
+    [640, 2800, 23000, 720000],
+    "2d",
+  ),
+  p(
+    u.chef,
+    "Tip: salt your pasta water like the sea. Your sauce will thank you.",
+    [150, 890, 7600, 160000],
+    "2d",
+  ),
+  p(
+    u.designer,
+    "Spacing scale: 4, 8, 12, 16, 24, 32, 48, 64. Print it. Tape it to your monitor.",
+    [110, 2400, 15800, 340000],
+    "2d",
+  ),
+  p(
+    u.indie,
+    "Shipped the landing page redesign. Conversion went from 2.1% to 3.8% overnight. Copy > colors.",
+    [270, 980, 9100, 230000],
+    "2d",
+    IMAGES.banner,
+  ),
+  p(
+    u.frontend,
+    "React Server Components clicked for me when I stopped thinking 'server vs client' and started thinking 'where does this data live?'",
+    [380, 1900, 14200, 410000],
+    "2d",
+  ),
+  p(
+    u.gamer,
+    "Speedrunners are the closest thing we have to wizards. Change my mind.",
+    [460, 1700, 19800, 520000],
+    "2d",
+  ),
+  p(
+    u.coffee,
+    "Pour-over is a hobby. Espresso is a lifestyle. Instant is a cry for help.",
+    [890, 2600, 31000, 870000],
+    "3d",
+  ),
+  p(
+    u.futbol,
+    "Las 10 mejores atajadas de la temporada. La número 1 desafía la física.",
+    [520, 3300, 27000, 1100000],
+    "3d",
+    IMAGES.wide,
+  ),
+  p(
+    u.security,
+    "If your password reset flow emails the old password back, we need to talk.",
+    [330, 4100, 26000, 690000],
+    "3d",
+  ),
+  p(
+    u.traveler,
+    "Cheapest flights are usually Tuesday or Wednesday departures. Saved $340 on my last trip just by shifting one day.",
+    [210, 3700, 22000, 580000],
+    "3d",
+  ),
+  p(
+    u.climate,
+    "Solar now generates more electricity than coal across the EU for the first time. Big milestone.",
+    [720, 6100, 44000, 1300000],
+    "3d",
+    IMAGES.banner,
+  ),
+  p(
+    u.memes,
+    "git commit -m 'final fix'\ngit commit -m 'final fix 2'\ngit commit -m 'ok this time for real'",
+    [940, 11000, 102000, 3100000],
+    "3d",
+  ),
+  p(
+    u.science,
+    "Your brain uses about 20% of your body's energy despite being 2% of its weight. Thinking is expensive.",
+    [280, 3200, 29000, 840000],
+    "4d",
+  ),
+  p(
+    u.music,
+    "What's an album you can listen to start to finish without skipping? Go.",
+    [3400, 520, 8900, 410000],
+    "4d",
+  ),
+  p(
+    u.photo,
+    "City lights from the 40th floor.",
+    [90, 670, 10200, 250000],
+    "4d",
+    IMAGES.square,
+  ),
+  p(
+    u.books,
+    "Reading 20 pages a day = ~30 books a year. Small habits compound.",
+    [190, 4800, 33000, 920000],
+    "4d",
+  ),
+  p(
+    u.fitness,
+    "Rest days are training days. Your muscles grow while you recover, not while you lift.",
+    [140, 1600, 12400, 300000],
+    "4d",
+  ),
+  p(
+    u.nba,
+    "Rookie of the year race is getting spicy. Who's your pick?",
+    [2800, 940, 11000, 640000],
+    "5d",
+  ),
+  p(
+    u.bogota,
+    "Ciclovía este domingo de 7am a 2pm. ¿Quién sale a rodar? 🚴",
+    [260, 830, 6700, 190000],
+    "5d",
+    IMAGES.wide,
+  ),
+];

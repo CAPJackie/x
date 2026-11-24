@@ -1,5 +1,6 @@
 "use client";
 
+import { isAtLeast } from "@/lib";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,7 +14,7 @@ export function Footer() {
   const isActive = (name: string) => pathname.includes(name);
 
   const handleScroll = () => {
-    if (window.innerWidth > 425) return;
+    if (isAtLeast("tablet")) return;
     const footer: HTMLElement | null = document.querySelector("footer");
     if (!footer) return;
     const opacity = Math.max(0.4, 1 - window.scrollY / 300);
@@ -36,9 +37,7 @@ export function Footer() {
     //TODO: Create each page
     //TODO: Buil For you layout / Following layout
     //TODO: Messages page
-    //TODO: Tablet
-    //TODO: Desktop
-    <footer className="hidden max-[425px]:flex fixed bottom-0 left-0 right-0 h-[53px] bg-black border-t border-twitter-dark-gray z-50 transition-opacity duration-300">
+    <footer className="flex tablet:hidden fixed bottom-0 left-0 right-0 h-[53px] bg-black border-t border-twitter-dark-gray z-50 transition-opacity duration-300">
       <nav className="h-full w-full">
         <ul className="flex flex-row items-center h-full w-full">
           <li key="1" className="flex-1 flex">

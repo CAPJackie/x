@@ -1,6 +1,7 @@
 "use client";
 
 import { ProfileContext, TopBarMenuContext } from "@/context";
+import { isAtLeast } from "@/lib";
 import { cn } from "@/lib/utils";
 import { TopBarMenuItems } from "@/types";
 import Image from "next/image";
@@ -36,7 +37,11 @@ export function Header() {
 
   useEffect(() => {
     const handleHeaderScroll = () => {
-      if (window.innerWidth > 425) return;
+      // Hide-on-scroll is a mobile-only behavior.
+      if (isAtLeast("tablet")) {
+        setHeaderHidden(false);
+        return;
+      }
       const currentY = window.scrollY;
       if (currentY > lastScrollYRef.current && currentY > 10) {
         setHeaderHidden(true);
@@ -66,20 +71,19 @@ export function Header() {
   return (
     <header
       className={cn(
-        "w-full flex flex-col",
-        "max-[425px]:sticky max-[425px]:top-0 max-[425px]:z-50 max-[425px]:bg-black max-[425px]:transition-transform max-[425px]:duration-300",
+        "sticky top-0 z-30 flex w-full flex-col bg-black/85 backdrop-blur-md transition-transform duration-300",
         {
-          "h-[53px]":
+          "tablet:h-[53px]":
             !!topBarMenuOptions[currentPageFromPathname] || isProfilePage,
-          "h-0": !topBarMenuOptions[currentPageFromPathname] && !isProfilePage,
-          "max-[425px]:h-auto": true,
-          "max-[425px]:-translate-y-full": headerHidden,
+          "tablet:h-0":
+            !topBarMenuOptions[currentPageFromPathname] && !isProfilePage,
+          "-translate-y-full tablet:translate-y-0": headerHidden,
         },
       )}
     >
-      {/* Phone-only top bar: profile image | X logo | Subscribe */}
+      {/* Mobile-only top bar: profile image | X logo | Subscribe */}
       {!isProfilePage && currentPageFromPathname !== "notifications" && (
-        <div className="hidden max-[425px]:flex items-center justify-between px-4 h-[53px]">
+        <div className="flex tablet:hidden items-center justify-between px-4 h-[53px]">
           <button className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
             <Image
               src="/images/profile.jpeg"
@@ -89,15 +93,21 @@ export function Header() {
               className="w-full h-full object-cover"
             />
           </button>
-          <Image src="/images/x.svg" alt="X" width={24} height={24} />
+          <Image
+            src="/images/x.svg"
+            alt="X"
+            width={24}
+            height={23}
+            className="h-auto w-6"
+          />
           <button className="border border-white rounded-full px-4 py-1.5 text-sm font-bold leading-none flex-shrink-0">
             Subscribe
           </button>
         </div>
       )}
-      {/* Phone-only top bar for notifications: profile image | Notifications | gear */}
+      {/* Mobile-only top bar for notifications: profile image | Notifications | gear */}
       {!isProfilePage && currentPageFromPathname === "notifications" && (
-        <div className="hidden max-[425px]:flex items-center justify-between px-4 h-[53px]">
+        <div className="flex tablet:hidden items-center justify-between px-4 h-[53px]">
           <div className="flex items-center gap-3 flex-1">
             <button className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
               <Image
